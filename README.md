@@ -1,45 +1,32 @@
 # Simple Interest Calculator
 
-This repository contains a simple Bash script that calculates simple interest based on user‑provided inputs.  
-The calculator asks for:
+Repository: **github-final-project**
 
-* **Principal (P)** – the initial amount of money.
-* **Rate of Interest (R)** – the annual interest rate (in percent).
-* **Time Period (T)** – the duration for which the interest is calculated (in years).
-
-The formula used is:
+This repository contains a Bash script that calculates simple interest based on user‑provided values for principal, rate of interest, and time period. The script prompts the user for each input, validates the data, performs the calculation using the formula:
 
 ```
-Simple Interest = (P * R * T) / 100
+Simple Interest = (Principal × Rate × Time) / 100
 ```
 
-## How to Use
+and displays the result.
 
-1. Clone the repository:
+## How to use
 
-   ```bash
-   git clone https://github.com/your-username/simple-interest-calculator.git
-   cd simple-interest-calculator
-   ```
+```bash
+chmod +x simple-interest.sh
+./simple-interest.sh
+```
 
-2. Make the script executable:
+Follow the prompts to enter the principal amount, the annual interest rate (in %), and the time period (in years). The script will output the calculated simple interest.
 
-   ```bash
-   chmod +x simple-interest.sh
-   ```
+## Project Structure
 
-3. Run the script:
-
-   ```bash
-   ./simple-interest.sh
-   ```
-
-   Follow the prompts to enter the principal, rate, and time. The script will display the calculated simple interest.
+- `README.md` – This file.  
+- `LICENSE` – Apache 2.0 license.  
+- `CODE_OF_CONDUCT` – Community conduct guidelines.  
+- `CONTRIBUTING.md` – Guidelines for contributing.  
+- `simple-interest.sh` – Bash script implementing the calculator.
 
 ## License
 
 This project is licensed under the Apache License 2.0 – see the `LICENSE` file for details.
-
-## Contributing
-
-Contributions are welcome! See `CONTRIBUTING.md` for guidelines.
