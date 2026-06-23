@@ -1,40 +1,35 @@
 #!/usr/bin/env bash
 
 # simple-interest.sh
-# A Bash script that calculates simple interest based on user input.
-# Formula: Simple Interest = (Principal * Rate * Time) / 100
+# Bash script to calculate simple interest.
+# Prompts user for principal, rate of interest, and time period.
 
-# Function to read a numeric value with validation
+# Function to read a positive numeric value
 read_number() {
     local prompt="$1"
-    local var
+    local value
     while true; do
-        read -rp "$prompt" var
-        # Allow integer or floating point numbers, optionally negative
-        if [[ "$var" =~ ^-?[0-9]+([.][0-9]+)?$ ]]; then
-            echo "$var"
+        read -rp "$prompt" value
+        # Validate: must be a positive integer or decimal
+        if [[ $value =~ ^[0-9]+([.][0-9]+)?$ ]] && (( $(echo "$value > 0" | bc -l) )); then
+            echo "$value"
             return
         else
-            echo "Invalid input. Please enter a numeric value."
+            echo "Invalid input. Please enter a positive number."
         fi
     done
 }
 
-echo "=== Simple Interest Calculator ==="
+principal=$(read_number "Enter the principal amount: ")
+rate=$(read_number "Enter the annual rate of interest (in %): ")
+time=$(read_number "Enter the time period (in years): ")
 
-principal=$(read_number "Enter the principal amount (e.g., 1000): ")
-rate=$(read_number "Enter the annual rate of interest (in %, e.g., 5): ")
-time=$(read_number "Enter the time period in years (e.g., 3): ")
+# Calculate simple interest: (P * R * T) / 100
+interest=$(echo "scale=2; ($principal * $rate * $time) / 100" | bc)
 
-# Calculate simple interest
-interest=$(awk "BEGIN { printf \"%.2f\", ($principal * $rate * $time) / 100 }")
-
-echo ""
+echo "--------------------------------------------------"
 echo "Principal: $principal"
 echo "Rate (%):   $rate"
 echo "Time (yr):  $time"
-echo "---------------------------"
 echo "Simple Interest: $interest"
-echo "==========================="
-
-exit 0
+echo "--------------------------------------------------"
